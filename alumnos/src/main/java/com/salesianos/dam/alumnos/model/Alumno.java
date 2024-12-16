@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.alumnos.model;
+package com.salesianos.dam.alumnos.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ public class Alumno {
     private String apellido2;
     private String telefono;
     private String email;
-    private String direccion;
-    private String curso;
+    private Direccion direccion;
+    private Curso curso;
 
 }
