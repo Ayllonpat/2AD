@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.alumnos.model;
+package com.salesianos.dam.alumnos.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
