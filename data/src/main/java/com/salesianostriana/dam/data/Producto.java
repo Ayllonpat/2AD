@@ -3,6 +3,8 @@ package com.salesianostriana.dam.data;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.core.CrudMethods;
 
 import java.util.Objects;
 
@@ -21,7 +23,12 @@ public class Producto {
     private Long id;
 
     private String nombre;
-    private double precio;
+
+    @Column(length = 4000, columnDefinition = "text") //text no tiene limite de caracteres y prioriza el segundo escrito
+    private String description;
+
+    @Column(name = "precio")
+    private double precioVenta;
 
     @Override
     public final boolean equals(Object o) {
