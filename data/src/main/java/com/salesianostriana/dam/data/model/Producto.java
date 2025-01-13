@@ -1,10 +1,8 @@
-package com.salesianostriana.dam.data;
+package com.salesianostriana.dam.data.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.core.CrudMethods;
 
 import java.util.Objects;
 
@@ -29,6 +27,10 @@ public class Producto {
 
     @Column(name = "precio")
     private double precioVenta;
+
+    @ManyToOne
+    @JoinColumn(name ="categoria_id", foreignKey = @ForeignKey(name = "fk_producto_categoria"))
+    private Categoria categoria;
 
     @Override
     public final boolean equals(Object o) {
