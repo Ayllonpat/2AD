@@ -1,0 +1,6 @@
+com\salesianos\dam\producto\model\Categoria.class
+com\salesianos\dam\producto\model\Producto.class
+com\salesianos\dam\producto\model\Producto$ProductoBuilder.class
+com\salesianos\dam\producto\ProductoApplication.class
+com\salesianos\dam\producto\model\Categoria$CategoriaBuilder.class
+com\salesianos\dam\producto\dto\ProductoDto.class

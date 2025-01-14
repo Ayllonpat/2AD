@@ -14,17 +14,17 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/productos")
 public class ProductController {
 
     private final ProductService productoService;
 
-    @GetMapping
-    public List<GetProductoDto> getAll() {
-        return productoService.findAll()
-                .stream()
-                .map(GetProductoDto::of)
-                .toList();
+    @GetMapping("/")
+    public List<Producto> getAll() {
+        return productoService.findAll();
+               // .stream()
+                //.map(GetProductoDto::of)
+                //.toList();
     }
 
     @GetMapping("/{id}")
