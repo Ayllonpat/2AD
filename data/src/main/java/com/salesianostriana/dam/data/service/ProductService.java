@@ -1,6 +1,8 @@
 package com.salesianostriana.dam.data.service;
 
+import com.salesianostriana.dam.data.dto.EditProductoCmd;
 import com.salesianostriana.dam.data.model.Producto;
+import com.salesianostriana.dam.data.repository.CategoriaRepository;
 import com.salesianostriana.dam.data.repository.ProductoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 public class ProductService {
 
     private final ProductoRepository productoRepository;
+    private final CategoriaRepository categoriaRepository;
 
     public List<Producto> findAll(){
         //obtener todos los productos si la lista esta vacia lanzo excepcion
@@ -29,19 +32,28 @@ public class ProductService {
                 .orElseThrow(() -> new EntityNotFoundException("No hay producto con esta id"));
     }
 
-    public Producto save(Producto producto){
-        return productoRepository.save(producto);
+    public Producto save(EditProductoCmd nuevo) {
+        return productoRepository.save(Producto.builder()
+                .nombre(nuevo.nombre())
+                .precioVenta(nuevo.precio())
+                //.categoria(categoriaRepository.getReferenceById(nuevo.categoriaId()))
+                .categoria(categoriaRepository.findById(nuevo.categoriaId()).orElse(null))
+                .description(nuevo.descripcion())
+                .build());
     }
 
-    public Producto edit(Producto producto, Long id){
+    public Producto edit(EditProductoCmd editProductoCmd, Long id) {
         return productoRepository.findById(id)
                 .map(old -> {
-                    old.setNombre(producto.getNombre());
-                    old.setDescription(producto.getDescription());
-                    old.setPrecioVenta(producto.getPrecioVenta());
+                    old.setNombre(editProductoCmd.nombre());
+                    old.setDescription(editProductoCmd.descripcion());
+                    old.setPrecioVenta(editProductoCmd.precio());
+                    //old.setCategoria(categoriaRepository.getReferenceById(editProductoCmd.categoriaId()));
+                    old.setCategoria(categoriaRepository.findById(editProductoCmd.categoriaId()).orElse(null));
                     return productoRepository.save(old);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("No hay producto con ID:"+ id));
+                .orElseThrow(() -> new EntityNotFoundException("No hay producto con ID: "+ id));
+
     }
 
      public void delete(Long id){

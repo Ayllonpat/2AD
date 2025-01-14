@@ -1,13 +1,13 @@
-package com.salesianos.dam.producto;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProductoApplication {
+public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductoApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
 
 }

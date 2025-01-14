@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.data.controller;
 
+import com.salesianostriana.dam.data.dto.EditProductoCmd;
+import com.salesianostriana.dam.data.dto.GetProductoDto;
 import com.salesianostriana.dam.data.service.ProductService;
 import com.salesianostriana.dam.data.repository.ProductoRepository;
 import com.salesianostriana.dam.data.model.Producto;
@@ -15,13 +17,14 @@ import java.util.List;
 @RequestMapping
 public class ProductController {
 
-    private final ProductoRepository productoRepository;
-
     private final ProductService productoService;
 
     @GetMapping
-    public List<Producto> getAll() {
-        return productoService.findAll();
+    public List<GetProductoDto> getAll() {
+        return productoService.findAll()
+                .stream()
+                .map(GetProductoDto::of)
+                .toList();
     }
 
     @GetMapping("/{id}")
@@ -30,14 +33,14 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Producto> create(@RequestBody Producto nuevo) {
+    public ResponseEntity<Producto> create(@RequestBody EditProductoCmd nuevo) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(
                         productoService.save(nuevo));
     }
 
     @PutMapping("/{id}")
-    public Producto edit(@RequestBody Producto aEditar,
+    public Producto edit(@RequestBody EditProductoCmd aEditar,
                          @PathVariable Long id) {
         return productoService.edit(aEditar, id);
     }
