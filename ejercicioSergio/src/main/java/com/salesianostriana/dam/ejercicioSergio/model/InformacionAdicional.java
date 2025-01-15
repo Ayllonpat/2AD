@@ -1,33 +1,39 @@
-package com.salesianostriana.dam.data.model;
+package com.salesianostriana.dam.ejercicioSergio.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
 @ToString
-public class Categoria {
+public class InformacionAdicional {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idEstudiante;
 
-    @Column(name = "nombre")
-    private String nombreCategoria;
+    @Column
+    private String dni;
 
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
-    @Builder.Default
+    @Column
+    private String telefono;
+
+    @Column
+    private String email;
+
+    @Column
+    private String direccion;
+
+    @OneToOne(mappedBy = "informacionAdicional")
+    @MapsId
     @ToString.Exclude
-    private List<Producto> productos = new ArrayList<>();
+    private Estudiante estudiante;
 
     @Override
     public final boolean equals(Object o) {
@@ -36,8 +42,8 @@ public class Categoria {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Categoria categoria = (Categoria) o;
-        return getId() != null && Objects.equals(getId(), categoria.getId());
+        InformacionAdicional that = (InformacionAdicional) o;
+        return getIdEstudiante() != null && Objects.equals(getIdEstudiante(), that.getIdEstudiante());
     }
 
     @Override

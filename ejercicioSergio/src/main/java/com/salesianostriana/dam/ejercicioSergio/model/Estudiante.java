@@ -1,33 +1,54 @@
-package com.salesianostriana.dam.data.model;
+package com.salesianostriana.dam.ejercicioSergio.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Estudiantes")
 @Builder
-@Getter
-@Setter
 @ToString
-public class Categoria {
+public class Estudiante {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
-    @Column(name = "nombre")
-    private String nombreCategoria;
+    @Column
+    private String nombre;
 
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
-    @Builder.Default
-    @ToString.Exclude
-    private List<Producto> productos = new ArrayList<>();
+    @Column
+    private String apellidos;
+
+    @Column
+    private int edad;
+
+    @Column
+    private String curso;
+
+    @OneToOne
+    private InformacionAdicional informacionAdicional;
+
+    //hay que crearlos manualmente para borrar y crear la relacion entre ellos
+    public void aniadirInformacionAdicional(InformacionAdicional informacionAdicional){
+
+        setInformacionAdicional(informacionAdicional);
+        informacionAdicional.setEstudiante(this);
+
+    }
+
+    public void borrarInformacionAdicional(InformacionAdicional informacionAdicional){
+
+        informacionAdicional.setEstudiante(null);
+        setInformacionAdicional(null);
+
+    }
 
     @Override
     public final boolean equals(Object o) {
@@ -36,8 +57,8 @@ public class Categoria {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Categoria categoria = (Categoria) o;
-        return getId() != null && Objects.equals(getId(), categoria.getId());
+        Estudiante that = (Estudiante) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.salesianostriana.dam.data.controller;
 
 import com.salesianostriana.dam.data.dto.EditCategoriaCmd;
+import com.salesianostriana.dam.data.dto.GetCategoriaWithProducto;
+import com.salesianostriana.dam.data.dto.GetProductoFromCategoria;
 import com.salesianostriana.dam.data.model.Categoria;
 import com.salesianostriana.dam.data.service.CategoriaService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +19,9 @@ public class CategoriaController {
 
     private final CategoriaService categoriaService;
 
-    @GetMapping
-    public List<Categoria> getAll() {
-        return categoriaService.findAll();
+    @GetMapping()
+    public List<GetCategoriaWithProducto> getAll() {
+        return categoriaService.findAll().stream().map(GetCategoriaWithProducto::of).toList();
     }
 
     @GetMapping("/{id}")
