@@ -3,41 +3,36 @@ package com.salesianostriana.dam.composicionIdClass.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.lang.Contract;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Builder
-@Entity
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Producto {
+public class Profesor {
 
     @Id
     @GeneratedValue
-    private Long idProducto;
+    private Long idProfesor;
 
     private String nombre;
 
-    private double pvp;
+    private String email;
 
-    @ManyToOne()
-    private Categoria categoria;
+    private double puntuacion;
 
-    public void aniadirCategoria(Categoria categoria){
-        setCategoria(categoria);
-        categoria.getProductos().add(this);
-    }
+    @OneToMany(mappedBy = "profesor")
+    private List<CursoOnline> cursoOnline = new ArrayList<>();
 
-    public void borrarCategoria(Categoria categoria){
 
-        categoria.getProductos().remove(categoria);
-        setCategoria(null);
-    }
+
 
     @Override
     public final boolean equals(Object o) {
@@ -46,8 +41,8 @@ public class Producto {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Producto producto = (Producto) o;
-        return getIdProducto() != null && Objects.equals(getIdProducto(), producto.getIdProducto());
+        Profesor profesor = (Profesor) o;
+        return getIdProfesor() != null && Objects.equals(getIdProfesor(), profesor.getIdProfesor());
     }
 
     @Override

@@ -58,6 +58,16 @@ public class Producto {
         t.getProductos().remove(this);
     }
 
+    public void aniadirCategoria(Categoria categoria){
+        setCategoria(categoria);
+        categoria.getProductos().add(this);
+    }
+
+    public void borrarCategoria(Categoria categoria){
+        setCategoria(categoria);
+        categoria.getProductos().remove(this);
+    }
+
 
     @Override
     public final boolean equals(Object o) {

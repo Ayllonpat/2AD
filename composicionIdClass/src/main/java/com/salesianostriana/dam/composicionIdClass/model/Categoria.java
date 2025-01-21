@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,15 +24,20 @@ public class Categoria {
 
     private String nombre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "categoria")
     @ToString.Exclude
-    private List<Producto> productos;
+    @Builder.Default
+    private List<Producto> productos = new ArrayList<>();
 
     @OneToOne
+    @ToString.Exclude
     private Categoria categoria;
 
+    @OneToOne(mappedBy = "categoria")
+    private Categoria categoriaHija;
+
     public void aniadirCategoria(Categoria categoria){
-        setCategoria(categoria);
+        setCategoriaHija(categoria);
         categoria.setCategoria(this);
     }
 

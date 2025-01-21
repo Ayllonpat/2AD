@@ -3,40 +3,53 @@ package com.salesianostriana.dam.composicionIdClass.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.lang.Contract;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Builder
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class Producto {
+public class CursoOnline {
 
     @Id
     @GeneratedValue
-    private Long idProducto;
+    private Long idCursoOnline;
 
     private String nombre;
 
-    private double pvp;
+    private double puntuacion;
 
-    @ManyToOne()
-    private Categoria categoria;
+    @ManyToOne
+    @ToString.Exclude
+    private Profesor profesor;
 
-    public void aniadirCategoria(Categoria categoria){
-        setCategoria(categoria);
-        categoria.getProductos().add(this);
+    @OneToMany(mappedBy = "cursoOnline", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Video> videos = new ArrayList<>();
+
+    public void addProfesor (Profesor profesor){
+        setProfesor(profesor);
+        profesor.getCursoOnline().add(this);
     }
 
-    public void borrarCategoria(Categoria categoria){
+    public void deleteProfesor(Profesor profesor){
+        profesor.getCursoOnline().remove(this);
+        setProfesor(null);
+    }
 
-        categoria.getProductos().remove(categoria);
-        setCategoria(null);
+    public void addVideo(Video video) {
+
+        video.setCursoOnline(this);
+        this.videos.add(video);
+    }
+
+    public void removeVideo(Video video){
+        videos.remove(video);
     }
 
     @Override
@@ -46,8 +59,8 @@ public class Producto {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Producto producto = (Producto) o;
-        return getIdProducto() != null && Objects.equals(getIdProducto(), producto.getIdProducto());
+        CursoOnline that = (CursoOnline) o;
+        return getIdCursoOnline() != null && Objects.equals(getIdCursoOnline(), that.getIdCursoOnline());
     }
 
     @Override

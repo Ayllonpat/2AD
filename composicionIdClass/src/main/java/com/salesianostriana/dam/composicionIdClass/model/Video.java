@@ -1,43 +1,38 @@
 package com.salesianostriana.dam.composicionIdClass.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.lang.Contract;
 
-import java.util.List;
 import java.util.Objects;
 
-@Builder
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class Producto {
+@Builder
+public class Video {
 
     @Id
     @GeneratedValue
-    private Long idProducto;
+    private Long idVideo;
 
-    private String nombre;
+    private String orden;
 
-    private double pvp;
+    private String titulo;
 
-    @ManyToOne()
-    private Categoria categoria;
+    private String descripcion;
 
-    public void aniadirCategoria(Categoria categoria){
-        setCategoria(categoria);
-        categoria.getProductos().add(this);
-    }
+    private String url;
 
-    public void borrarCategoria(Categoria categoria){
-
-        categoria.getProductos().remove(categoria);
-        setCategoria(null);
-    }
+    @ManyToOne
+    @ToString.Exclude
+    private CursoOnline cursoOnline;
 
     @Override
     public final boolean equals(Object o) {
@@ -46,8 +41,8 @@ public class Producto {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Producto producto = (Producto) o;
-        return getIdProducto() != null && Objects.equals(getIdProducto(), producto.getIdProducto());
+        Video video = (Video) o;
+        return getIdVideo() != null && Objects.equals(getIdVideo(), video.getIdVideo());
     }
 
     @Override
