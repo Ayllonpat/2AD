@@ -9,8 +9,6 @@ import lombok.Setter;
 
 @Entity
 @DiscriminatorValue(value="con_alcohol")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class ConAlcohol extends Bebida{
