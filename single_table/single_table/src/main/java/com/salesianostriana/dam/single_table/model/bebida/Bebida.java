@@ -1,13 +1,8 @@
-package com.salesianostriana.dam.single_table.model;
+package com.salesianostriana.dam.single_table.model.bebida;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
@@ -16,13 +11,16 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn()
 @Getter
 @Setter
-public class Bebida {
-    @Id
+@SuperBuilder
+@ToString
+public abstract class Bebida {
+    @Id @GeneratedValue
     private Long id;
     private String nombre;
-    private Long precio;
+    private double precio;
 
     @Override
     public final boolean equals(Object o) {
