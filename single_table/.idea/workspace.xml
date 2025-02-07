@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e69252e-78a2-47e0-b335-8c7632fae5ef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/model/Bebida.java" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/model/bebida/Bebida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/model/ConAlcohol.java" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/model/bebida/ConAlcohol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/model/SinAlcohol.java" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/model/bebida/SinAlcohol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/repository/BebidaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/repository/BebidaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/repository/ConAlcoholRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/repository/ConAlcoholRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/repository/SinAlcoholRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/java/com/salesianostriana/dam/single_table/repository/SinAlcoholRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_table/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/single_table/src/main/resources/import.sql" afterDir="false" />
-    </list>
+    <list default="true" id="8e69252e-78a2-47e0-b335-8c7632fae5ef" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Pitec/OneDrive/Escritorio/Dam2/Acceso a Datos/2AD/single_table",
+    "last_opened_file_path": "C:/Users/alonso.aypat22_trian/Desktop/DAM2/Acceso a daos/Satapp-V1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
