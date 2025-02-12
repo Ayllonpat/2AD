@@ -7,27 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@SuperBuilder
-public class UserResponse {
+public record UserResponse(
+        UUID id,
+        String username
+) {
 
-    protected String id;
-    protected String username, avatar, fullName;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
-    protected LocalDateTime createdAt;
-
-    public static UserResponse fromUser(User user) {
-
-        return UserResponse.builder()
-                .id(user.getId().toString())
-                .username(user.getUsername())
-                .avatar(user.getAvatar())
-                .fullName(user.getFullName())
-                .createdAt(user.getCreatedAt())
-                .build();
-    }
+    public static UserResponse
 
 }

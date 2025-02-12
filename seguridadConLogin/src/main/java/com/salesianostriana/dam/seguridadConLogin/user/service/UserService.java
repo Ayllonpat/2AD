@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.EnumSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,11 +21,11 @@ public class UserService {
 
     public User createUser(CreateUserRequest createUserRequest, EnumSet<UserRole> roles) {
         User user =  User.builder()
-                .username(createUserRequest.getUsername())
-                .password(passwordEncoder.encode(createUserRequest.getPassword()))
-                .avatar(createUserRequest.getAvatar())
-                .fullName(createUserRequest.getFullName())
-                .roles(roles)
+                .username(createUserRequest.username())
+                .password(passwordEncoder.encode(createUserRequest.password()))
+                .avatar(createUserRequest.avatar())
+                .fullName(createUserRequest.fullName())
+                .roles(Set.of(UserRole.USER))
                 .build();
 
         return userRepository.save(user);
