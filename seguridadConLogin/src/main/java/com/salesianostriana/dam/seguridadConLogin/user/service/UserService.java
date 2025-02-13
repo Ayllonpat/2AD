@@ -19,7 +19,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    public User createUser(CreateUserRequest createUserRequest, EnumSet<UserRole> roles) {
+    public User createUser(CreateUserRequest createUserRequest) {
         User user =  User.builder()
                 .username(createUserRequest.username())
                 .password(passwordEncoder.encode(createUserRequest.password()))
@@ -31,8 +31,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User createUserWithUserRole(CreateUserRequest createUserRequest){
+    /*public User createUserWithUserRole(CreateUserRequest createUserRequest){
         return createUser(createUserRequest, EnumSet.of(UserRole.USER));
-    }
+    }*/
 
 }

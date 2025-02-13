@@ -1,14 +1,10 @@
-package com.salesianostriana.dam.seguridadConLogin.user.dto;
+package com.salesianostriana.dam.jwt.security.user.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.salesianostriana.dam.seguridadConLogin.user.model.User;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import com.salesianostriana.dam.jwt.security.user.model.User;
 
-import java.security.SecureRandom;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record UserResponse(
